@@ -1,0 +1,21 @@
+Sobre a importação da base dados.
+
+Escolhi usar o sqlite3 por ser um banco de dados nativo do Python3 e nao necessitar instalar um SGBD, como o MySql. Em uma primeira versao, utilizei o MySql. Porem, por questões de performance e espaço em disco do meu PC, revi e preferi usar o SQLite.
+No MySql, eu havia transformado o conteúdo dos arquivos TSV para instruções SQL. Como resolvi mudar de database, desenvolvi um método para utilizar o arquivo TSV direto. No método que implementa a criação do database e das tabelas, criei um mecanismo de inserção dos dados do arquivo TSV utilizando uma espécie de buffer com a intenção de nao have estouro de memória nos casos do arquivo TSV ser muito grande, o que precisaria de muito espaço em memória para comportar a quantidade de dados do arquivo. Ao final da importação de dados, dos 3 arquivos, a base de dados está completa e pronta para uso.
+
+Sobre WebService Python
+
+O Webservice consiste em um ws do tipo REST desenvolvido em Flask. Para rodar, foi necessário importar os pacotes sqlite3, pandas, sqlalchemy import create_engine, flask, jsonify, flask_cors, CORS, cross_origin para execução de página e 
+acesso ao JSON e nao ser bloqueado pelo CORS e  métodos de criação de database, manipulação de arquivos TSV, Json ...
+O método create_table, cria o database e as tabelas, seguindo o modelo de dados sugerido na descrição do teste.
+No método importar_dados, eu usei um buffer (chunksize) para determinar um limite de dados para inserção no banco (como expliquei antes,
+para nao ocorrer o estouro de memório causado pelo tamanho dos arquivos).
+
+App HTML
+
+Criei uma págima html (index.html) para consumir os dados do webservice através de AJAX e populando um table usando jquery.
+
+Pontos a terminar
+Terminar a aplicação que consome as outras consultas exigidas na thread. 
+Terminar a consulta no database retornando as informações das consultas na thread
+Metodos de teste: nao implementei nenhum caso de teste especifico. Porem, as execuções dos metodos tem tratamento de exceção

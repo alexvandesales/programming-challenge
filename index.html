@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Teste prático</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="table-responsive">
+                <h1>Teste JSON para HTML</h1><br/>
+                <table class="table table-bordered table-striped" id="title_table">
+                    <tr>
+                        <th>tconst</th>
+                        <th>averageRating</th>
+                        <th>numVotes</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+    $(document).ready(function(){
+        $.get('http://localhost:5000', function(data){
+            var title = '';
+
+            $.each(JSON.parse(data), function(key, value){
+                console.log(key + ":" + value)
+                title += '<tr>';
+                title += '<td>' + value.tconst + '</td>';
+                title += '<td>' + value.averageRating + '</td>';
+                title += '<td>' + value.numVotes + '</td>';
+                title += '</tr>';
+            });
+            $('#title_table').append(title);
+        });
+    });
+</script>
